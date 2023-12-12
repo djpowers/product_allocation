@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  validates :barcode, uniqueness: true
   validates :name, presence: true
   validates :weight, numericality: true
 
