@@ -16,7 +16,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_151253) do
 
   create_table "products", force: :cascade do |t|
     t.string "barcode"
-    t.string "description"
+    t.string "name"
+    t.text "description"
     t.float "weight"
     t.integer "bucket"
     t.datetime "created_at", null: false

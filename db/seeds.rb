@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+20.times do
+  if Product.create(
+      barcode: Faker::Barcode.upc_a,
+      name: Faker::Food.dish,
+      weight: Faker::Number.decimal(l_digits: 1, r_digits: 2),
+    )
+    puts 'New product created'
+  end
+end
