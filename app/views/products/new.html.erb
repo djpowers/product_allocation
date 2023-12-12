@@ -12,6 +12,7 @@
               <input type="number" name="barcode" id="barcode" autocomplete="barcode" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="0123456789">
               <button type="button" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" id="scan-button">Scan</button>
             </div>
+            <p id="barcode-text"><p>
           </div>
         </div>
 
@@ -79,6 +80,8 @@
   scanButton.addEventListener("click", async (event) => {
     const barcodeInput = document.getElementById('barcode')
     const barcodeValue = barcodeInput.value;
+    const barcodeText = document.getElementById('barcode-text');
+    barcodeText.innerText = '';
 
     try {
       const response = await fetch(`/products/${barcodeValue}`)
@@ -93,10 +96,10 @@
         descriptionInput.value = product?.description;
         weightInput.value = product?.weight;
       } else {
-        console.log('Barcode not found.')
+        barcodeText.innerText = 'Barcode not found.';
       }
     } catch (error) {
-      console.error(`Lookup error: ${error.message}`);
+      barcodeText.innerText = 'There was an error looking up this barcode.';
     }
   });
 </script>
