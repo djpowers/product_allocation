@@ -15,14 +15,16 @@ class ProductsController < ApplicationController
     if product_params[:barcode].present?
       @product = Product.find_by(barcode: product_params[:barcode])
       if @product.update(product_params.compact_blank.merge(bucket:))
-        redirect_to new_product_path
+        redirect_to new_product_path, notice: "Product was successfully updated."
       else
+        flash.now[:alert] = "Product could not be updated."
         render :new
       end
     else
       if Product.create(product_params.compact_blank.merge(bucket:))
-        redirect_to new_product_path
+        redirect_to new_product_path, notice: "Product was successfully created."
       else
+        flash.now[:alert] = "Product could not be created."
         render :new
       end
     end
