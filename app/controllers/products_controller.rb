@@ -4,16 +4,23 @@ class ProductsController < ApplicationController
   end
 
   def create
+    bucket = if params["loss-button"].present?
+      :loss
+    elsif params["process-button"].present?
+      :process
+    elsif params["donation-button"].present?
+      :donation
+    end
+
     if product_params[:barcode].present?
-      debugger
       @product = Product.find_by(barcode: product_params[:barcode])
-      if @product.update(product_params.compact_blank)
+      if @product.update(product_params.compact_blank.merge(bucket:))
         redirect_to new_product_path
       else
         render :new
       end
     else
-      if Product.create(product_params.compact_blank)
+      if Product.create(product_params.compact_blank.merge(bucket:))
         redirect_to new_product_path
       else
         render :new
