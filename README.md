@@ -1,24 +1,17 @@
-# README
+# Product Allocation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails application allows for allocating products into different destination buckets.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+This application relies on Ruby 3.2.2 and a PostgreSQL installation.
 
-* System dependencies
+Run `bundle install` to install project dependencies.
 
-* Configuration
+Run `bundle exec rails db:setup` to create the database and load seed data.
 
-* Database creation
+Start the development server with `./bin/dev`.
 
-* Database initialization
+## Sample Data
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run `bundle exec rails db:seed` to load new/additional sample product data.
